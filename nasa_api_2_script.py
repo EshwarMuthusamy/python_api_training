@@ -22,12 +22,18 @@ def main():
     response = requests.get(url+start_date+api_key)
 
     # parse out json
-    print(response.json())
+    # print(response.json())
 
     response_json = response.json()
 
     for response in response_json:
-        print(response)
+        neo = response_json.get('near_earth_objects')
+        # print(type(neo))
+        for key in neo:
+            dates = neo[key]
+            for i in dates:
+                if type(i) == dict:
+                    print(dates)
 
 if __name__ == "__main__":
     main()
